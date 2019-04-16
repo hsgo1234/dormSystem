@@ -1,7 +1,9 @@
 package com.qddx.controller;
 
 import com.qddx.dao.PersonMapper;
+import com.qddx.dao.UserInfoMapper;
 import com.qddx.domain.Person;
+import com.qddx.domain.UserInfo;
 import com.qddx.service.HelloSender;
 import com.qddx.service.MailServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,8 @@ public class ControllerApplication {
     private HelloSender helloSender;
     @Autowired
     private MailServiceImpl mailService;
+    @Autowired
+    private UserInfoMapper userInfoMapper;
 
     @RequestMapping("/insert")
     public Integer save(){
@@ -44,5 +48,10 @@ public class ControllerApplication {
     public void sendMail() throws Exception{
         String context = "现在时间"+new Date();
         mailService.sendSimpleMail("997922078@qq.com","测试一下",context);
+    }
+
+    @RequestMapping(value = "/userAll")
+    public UserInfo login(){
+        return userInfoMapper.findByUsername("admin");
     }
 }

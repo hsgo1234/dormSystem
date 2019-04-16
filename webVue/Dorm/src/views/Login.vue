@@ -12,9 +12,9 @@
             </div>
             <!-- 登录窗口 -->
             <div id="loginform" v-bind:style="{left:(screenporps.screenwidth)*8/16+'px',top:(screenporps.screenwidth)*3.1/17+'px'}">
-                <p><span style="color:#C0F5F9">username : </span><input type="text"></p>
-                <p><span style="color:#C0F5F9">password : </span><input type="password"></p>
-                <button id="loginbutton" v-bind:style="{left:(screenporps.screenwidth)*3.5/16+'px',top:(screenporps.screenwidth)*0.15/20+'px'}">login</button>
+                <p><span style="color:#C0F5F9">username : </span><input type="text" name="username" v-model="formdata.username"></p>
+                <p><span style="color:#C0F5F9">password : </span><input type="password" name="password" v-model="formdata.password"></p>
+                <button id="loginbutton" @click="login" v-bind:style="{left:(screenporps.screenwidth)*3.5/16+'px',top:(screenporps.screenwidth)*0.15/20+'px'}">login</button>
             </div>
         </div>
         <!-- 下条 -->
@@ -26,6 +26,26 @@
 // 获取store中屏幕宽高
 import {mapState} from "vuex"                                             
 export default {
+    name: "login",
+    data: function() {
+      return {
+          formdata:{
+              username:"",
+              password:""
+          }
+      }
+    },
+    methods:{
+        login(){
+            var url = "http://localhost:8090/login?username="+this.formdata.username+"&password="+this.formdata.password
+            console.log(url)
+            this.$http.get(url).then(response =>{
+                console.log("get:"+response.bodyText);
+            },response =>{
+                console.log("error"+response)
+            })
+        }
+    },
     computed:mapState({
         screenporps:state => state.screenporps
     })

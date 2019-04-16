@@ -19,7 +19,7 @@
             <!-- 菜单 -->
             <div id="systemmenucontent">
                 <router-link to="/plan"><div @click="menuclick(1)" :class="{systemmenuactive : menuclick1}" class="systemmenucontent"><i class="fa fa-cogs"></i><span>&nbsp;&nbsp;公寓概况</span></div></router-link>
-                <router-link to="/login"><div @click="menuclick(2)" :class="{systemmenuactive : menuclick2}" class="systemmenucontent"><i class="fa fa-cogs"></i><span>&nbsp;&nbsp;门禁检测</span></div></router-link>
+                <router-link to="/datavisual"><div @click="menuclick(2)" :class="{systemmenuactive : menuclick2}" class="systemmenucontent"><i class="fa fa-cogs"></i><span>&nbsp;&nbsp;门禁检测</span></div></router-link>
             </div>
         </div>
 
@@ -44,14 +44,14 @@ function checktime(i){
 
 function showtime(){
     var now = new Date();
-    var year=now.getFullYear();
+    // var year=now.getFullYear();
     var month=now.getMonth()+1; //js获取的月份是从0开始；
     var day=now.getDate();
     var h=now.getHours();
     var m=now.getMinutes();
-    var s=now.getSeconds();
+    // var s=now.getSeconds();
     m=checktime(m);
-    s=checktime(s);
+    // s=checktime(s);
 
     var weekday=new Array(7)
     weekday[0]="星期日"
@@ -84,7 +84,7 @@ export default {
             switch(sign){
                 case 1:{this.menuclick1 = true; break;}
                 case 2:{this.menuclick2 = true; break;}
-                default :{}
+                default :{null}
             }
         }
     }

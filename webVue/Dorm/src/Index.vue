@@ -7,15 +7,9 @@
 </template>
 
 <script>
-    import Login from "./views/Login";
-    import Visual from "./views/Visual";
-    import Admin from "./views/Admin";
     export default {
         name: 'Index',
         components: {
-            Admin,
-            Visual,
-            Login
         }
     }
 </script>
