@@ -1,8 +1,8 @@
 <template>
     <div style="width: 100%;height: 100%;color: #ffffff;">
         <ul>
-            <li v-for="item in respond" :key="item.id">
-                {{item.id}}:{{item.name}}:{{item.age}}
+            <li>
+                {{respond}}
             </li>
         </ul>
     </div>
@@ -13,12 +13,18 @@
         name: "GetData",
         data: function(){
             return {
-                respond: []
+                respond: [],
+                person:{
+                    id:12,
+                    name:"ld",
+                    age:16
+                }
             }
         },
         mounted: function() {
-            this.$http.get("http://localhost:8090/selectAll").then(response =>{
-                this.respond = response.body;
+            console.log(this.person);
+            this.$http.post("http://localhost:8090/test",this.person).then(response =>{
+                this.respond = response.data;
             }, response =>{
                 this.respond = "no find"+response
             })

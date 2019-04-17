@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <Login v-if="false"></Login>
+        <Login v-if="true"></Login>
         <visual v-else-if="false"></visual>
         <admin v-else></admin>
     </div>

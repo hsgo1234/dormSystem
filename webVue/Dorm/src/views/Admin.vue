@@ -19,7 +19,7 @@
             <!-- 菜单 -->
             <div id="systemmenucontent">
                 <router-link to="/plan"><div @click="menuclick(1)" :class="{systemmenuactive : menuclick1}" class="systemmenucontent"><i class="fa fa-cogs"></i><span>&nbsp;&nbsp;公寓概况</span></div></router-link>
-                <router-link to="/datavisual"><div @click="menuclick(2)" :class="{systemmenuactive : menuclick2}" class="systemmenucontent"><i class="fa fa-cogs"></i><span>&nbsp;&nbsp;门禁检测</span></div></router-link>
+                <router-link to="/getdata"><div @click="menuclick(2)" :class="{systemmenuactive : menuclick2}" class="systemmenucontent"><i class="fa fa-cogs"></i><span>&nbsp;&nbsp;门禁检测</span></div></router-link>
             </div>
         </div>
 

@@ -1,14 +1,11 @@
 package com.qddx.controller;
 
-import com.qddx.dao.PersonMapper;
-import com.qddx.dao.UserInfoMapper;
-import com.qddx.domain.Person;
-import com.qddx.domain.UserInfo;
+import com.qddx.dao.*;
+import com.qddx.domain.*;
 import com.qddx.service.HelloSender;
 import com.qddx.service.MailServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
@@ -24,6 +21,30 @@ public class ControllerApplication {
     private MailServiceImpl mailService;
     @Autowired
     private UserInfoMapper userInfoMapper;
+    @Autowired
+    private TeacherMapper teacherMapper;
+    @Autowired
+    private LogInfoMapper logInfoMapper;
+
+    @RequestMapping("/login")
+    public String login(@RequestBody LogInfo logInfo){
+        String username = logInfo.getUsername();
+        String password = logInfo.getPassword();
+        Teacher teacher = teacherMapper.selectByTeaName(username);
+        if (teacher==null){
+            System.out.println("用户名不存在");
+            return "用户名不存在";
+        }else {
+            LogInfo logInfo1 =logInfoMapper.selcetByUserName(username);
+            if (logInfo1.getPassword().equals(password)){
+                System.out.println("success");
+                return "success";
+            }else {
+                System.out.println("密码错误");
+                return "密码错误";
+            }
+        }
+    }
 
     @RequestMapping("/insert")
     public Integer save(){
@@ -53,5 +74,11 @@ public class ControllerApplication {
     @RequestMapping(value = "/userAll")
     public UserInfo login(){
         return userInfoMapper.findByUsername("admin");
+    }
+
+    @RequestMapping(value = "test")
+    public Person  test(@RequestBody Person person){
+        System.out.println(person.toString());
+        return person;
     }
 }
