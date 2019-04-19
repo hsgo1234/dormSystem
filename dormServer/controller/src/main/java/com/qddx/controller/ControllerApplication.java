@@ -30,12 +30,11 @@ public class ControllerApplication {
     public String login(@RequestBody LogInfo logInfo){
         String username = logInfo.getUsername();
         String password = logInfo.getPassword();
-        Teacher teacher = teacherMapper.selectByTeaName(username);
-        if (teacher==null){
+        LogInfo logInfo1 =logInfoMapper.selcetByUserNameWithAdmin(username);
+        if (logInfo1==null){
             System.out.println("用户名不存在");
             return "用户名不存在";
         }else {
-            LogInfo logInfo1 =logInfoMapper.selcetByUserName(username);
             if (logInfo1.getPassword().equals(password)){
                 System.out.println("success");
                 return "success";

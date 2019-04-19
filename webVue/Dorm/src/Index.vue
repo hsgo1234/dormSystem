@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <Login v-if="true"></Login>
+        <Login v-if="!loginstate"></Login>
         <visual v-else-if="false"></visual>
         <admin v-else></admin>
     </div>
@@ -10,6 +10,11 @@
     export default {
         name: 'Index',
         components: {
+        },
+        computed: {
+            loginstate() {
+                return this.$store.state.loginfo.state
+            }
         }
     }
 </script>

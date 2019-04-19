@@ -39,9 +39,10 @@ export default {
     methods:{
         login(){
             this.$http.post("http://localhost:8090/login",this.formdata).then(response =>{
-                console.log("get:"+response.bodyText);
-                if (response.valueOf("success")){
+                var result = response.bodyText;
+                if (result=="success"){
                     console.log("good")
+                    this.$store.commit("login",this.formdata);
                 }
             },response =>{
                 console.log("error"+response)
